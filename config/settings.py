@@ -1,6 +1,11 @@
 import os
 from pathlib import Path
 
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
 import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,12 +15,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gu_&!yy2i33v9=(-zut+@5lz_=jy-(&id7-f&-%6^2^j4&=k@1'
+SECRET_KEY = "django_insecure_gu_&!yy2i33v9zutjy&id7-f&-%6^2^j4&=k@1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -32,8 +37,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_auth',
-    'rest_auth.registration',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'rest_framework',
     'rest_framework.authtoken',
 
@@ -79,9 +84,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webdemo',
-        'USER': 'postgres',
-        'PASSWORD': 'psqldb',
+        'NAME':env('NAME'),
+        'USER':env('USER'),
+        'PASSWORD':env('PASSWORD'),
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
