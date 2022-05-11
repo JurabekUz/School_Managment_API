@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
 
     'core',
     'accounts',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -170,6 +172,8 @@ ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 AUTH_USER_MODEL = "accounts.User"
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 django_heroku.settings(locals())
 
